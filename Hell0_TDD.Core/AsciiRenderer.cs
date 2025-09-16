@@ -4,7 +4,7 @@ public class AsciiRenderer
 {
     public string Render(string input)
     {
-        // Return empty string to show your test can fail;
-        return string.Empty;
+        // For now return input; will pass first test for non-empty string
+        return input;
     }
 }
