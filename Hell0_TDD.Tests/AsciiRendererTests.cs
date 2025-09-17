@@ -5,18 +5,66 @@ namespace Hell0_TDD.Tests;
 
 public class AsciiRendererTests
 {
-    // First test - easy to assert
-    // Checks that the Render method returns a non-empty string.
-    [Fact]
-    public void Render_ReturnsNonEmptyString_ForSimpleInput()
+    private readonly AsciiRenderer _renderer;
+
+    public AsciiRendererTests()
     {
-        // Arrange
-        var renderer = new AsciiRenderer();
+        _renderer = new AsciiRenderer();
+    }
 
-        // Act
-        string result = renderer.Render("Hello");
+    [Fact]
+    public void Render_InputIsNull_ReturnsEmptyString()
+    {
+        string result = _renderer.Render(null);
 
-        // Assert
-        Assert.False(string.IsNullOrWhiteSpace(result), "Rendered ASCII should not be empty.");
+        Assert.Equal("", result);
+    }
+
+    [Fact]
+    public void Render_InputIsEmpty_ReturnsEmptyString()
+    {
+        string result = _renderer.Render("");
+
+        Assert.Equal("", result);
+    }
+
+    [Fact]
+    public void Render_InputIsWhitespace_ReturnsEmptyString()
+    {
+        string result = _renderer.Render("   ");
+
+        Assert.Equal("", result);
+    }
+
+    [Fact]
+    public void Render_SimpleWord_ReturnsSameWord()
+    {
+        string result = _renderer.Render("Hello");
+
+        Assert.Equal("Hello", result);
+    }
+
+    [Fact]
+    public void Render_InputHasLeadingAndTrailingSpaces_TrimsInput()
+    {
+        string result = _renderer.Render("   Hello   ");
+
+        Assert.Equal("Hello", result);
+    }
+
+    [Fact]
+    public void Render_InputHasMixedCase_PreservesCase()
+    {
+        string result = _renderer.Render("HeLLo");
+
+        Assert.Equal("HeLLo", result);
+    }
+
+    [Fact]
+    public void Render_SingleCharacter_ReturnsSameCharacter()
+    {
+        string result = _renderer.Render("A");
+
+        Assert.Equal("A", result);
     }
 }
