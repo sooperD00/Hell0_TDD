@@ -4,7 +4,11 @@ public class AsciiRenderer
 {
     public string Render(string input)
     {
-        // For now return input; will pass first test for non-empty string
-        return input;
+        // Handle null, empty, or whitespace input
+        if (string.IsNullOrWhiteSpace(input))
+            return string.Empty;
+
+        // Trim leading/trailing spaces, preserve case
+        return input.Trim();
     }
 }
