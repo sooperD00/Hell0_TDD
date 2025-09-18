@@ -50,7 +50,7 @@ public class AsciiRendererTests
         Assert.Equal(first, second);
     }
 
-    // Very long input (does not throw)
+    // Very long input: Ensures Figgle rendering succeeds for up to 1000 chars
     [Fact]
     public void RenderAscii_VeryLongInput_DoesNotThrow()
     {
@@ -58,4 +58,17 @@ public class AsciiRendererTests
         var exception = Record.Exception(() => AsciiRenderer.RenderAscii(longInput));
         Assert.Null(exception);
     }
+
+    // Very long input: Enforces app-level maximum input length (1000 chars)
+    [Fact]
+    public void RenderAscii_InputExceedsMaxLength_ThrowsArgumentException()
+    {
+        // Arrange
+        string longInput = new string('A', 1001); // 1001 characters, exceeds max length
+
+        // Act & Assert
+        var ex = Assert.Throws<ArgumentException>(() => AsciiRenderer.RenderAscii(longInput));
+        Assert.Equal("Input exceeds maximum allowed length of 1000 characters. (Parameter 'input')", ex.Message);
+    }
+
 }
