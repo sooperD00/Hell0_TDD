@@ -45,10 +45,11 @@ This repo showcases a clean commit history that highlights TDD best practices.
 - [x] Practice **unit testing** with xUnit.
 - [x] Work with a **class library project** in C#.
 - [x] Maintain a clear, professional **commit history** showcasing TDD.
+- [x] Integrate external libraries (**Figgle**) for ASCII rendering.
 
 ## Next Steps
-- [ ] Integrate external libraries (**Figgle**) for ASCII rendering.
-- [ ] Create a minimal web front-end (ASP.NET Core or Blazor) to accept input and display ASCII output.
+- [ ] Release as a NuGet package for use in future web project.
+- [ ] Create a minimal web front-end (ASP.NET Core or Blazor) that consumes `Hell0_TDD.Core` from NuGet.
 - [ ] Set up CI/CD using GitHub Actions to automatically build and test the library.
 
 ## License 
