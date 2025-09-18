@@ -8,7 +8,7 @@ public class AsciiRenderer
     // Cache the standard font once since it never changes
     private static readonly FiggleFont StandardFont = FiggleFonts.Standard;
 
-    public string RenderAscii(string input)
+    public static string RenderAscii(string input)
     {
         // Guard against null, empty, or whitespace input
         if (string.IsNullOrWhiteSpace(input))

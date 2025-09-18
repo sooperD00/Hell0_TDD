@@ -5,12 +5,6 @@ namespace Hell0_TDD.Tests;
 
 public class AsciiRendererTests
 {
-    private readonly AsciiRenderer _renderer;
-
-    public AsciiRendererTests()
-    {
-        _renderer = new AsciiRenderer();
-    }
 
     // Null, empty, or whitespace input
     [Theory]
@@ -21,7 +15,7 @@ public class AsciiRendererTests
     [InlineData("\n")]
     public void RenderAscii_NullOrWhitespaceInput_ReturnsEmptyString(string input)
     {
-        string result = _renderer.RenderAscii(input);
+        string result = AsciiRenderer.RenderAscii(input);
         Assert.Equal(string.Empty, result);
     }
 
@@ -31,7 +25,7 @@ public class AsciiRendererTests
     [InlineData("\tHello\t", "  _   _      _ _       \r\n | | | | ___| | | ___  \r\n | |_| |/ _ \\ | |/ _ \\ \r\n |  _  |  __/ | | (_) |\r\n |_| |_|\\___|_|_|\\___/ \r\n                       \r\n")]
     public void RenderAscii_TrimmedInput_ReturnsExpectedOutput(string input, string expectedOutput)
     {
-        string actual = _renderer.RenderAscii(input);
+        string actual = AsciiRenderer.RenderAscii(input);
         Assert.Equal(expectedOutput, actual);
     }
 
@@ -41,7 +35,7 @@ public class AsciiRendererTests
     [InlineData("123", "  _ ____  _____ \r\n / |___ \\|___ / \r\n | | __) | |_ \\ \r\n | |/ __/ ___) |\r\n |_|_____|____/ \r\n                \r\n")]
     public void RenderAscii_SpecialCharactersAndNumbers_ReturnsExpectedOutput(string input, string expectedOutput)
     {
-        string actual = _renderer.RenderAscii(input);
+        string actual = AsciiRenderer.RenderAscii(input);
         Assert.Equal(expectedOutput, actual);
     }
 
@@ -50,8 +44,8 @@ public class AsciiRendererTests
     public void RenderAscii_SameInputMultipleTimes_ReturnsSameOutput()
     {
         string input = "Hi";
-        string first = _renderer.RenderAscii(input);
-        string second = _renderer.RenderAscii(input);
+        string first = AsciiRenderer.RenderAscii(input);
+        string second = AsciiRenderer.RenderAscii(input);
 
         Assert.Equal(first, second);
     }
@@ -61,7 +55,7 @@ public class AsciiRendererTests
     public void RenderAscii_VeryLongInput_DoesNotThrow()
     {
         string longInput = new string('A', 1000);
-        var exception = Record.Exception(() => _renderer.RenderAscii(longInput));
+        var exception = Record.Exception(() => AsciiRenderer.RenderAscii(longInput));
         Assert.Null(exception);
     }
 }
