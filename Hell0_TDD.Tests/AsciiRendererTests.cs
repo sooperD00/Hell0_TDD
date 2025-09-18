@@ -39,9 +39,17 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputHasLeadingAndTrailingSpaces_TrimsInput()
     {
-        string result = _renderer.RenderAscii("   Hi   ");
+        // Arrange
+        string input = "  Hi  ";
 
-        Assert.Equal("Hello", result);
+        // This is the expected multi-line Figgle ASCII output for "Hi"
+        string expectedOutput = "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n";
+
+        // Act
+        string actualOutput = _renderer.RenderAscii(input);
+
+        // Assert
+        Assert.Equal(expectedOutput, actualOutput);
     }
 
     [Fact]
