@@ -15,7 +15,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputIsNull_ReturnsEmptyString()
     {
-        string result = _renderer.Render(null);
+        string result = _renderer.RenderAscii(null);
 
         Assert.Equal("", result);
     }
@@ -23,7 +23,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputIsEmpty_ReturnsEmptyString()
     {
-        string result = _renderer.Render("");
+        string result = _renderer.RenderAscii("");
 
         Assert.Equal("", result);
     }
@@ -31,7 +31,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputIsWhitespace_ReturnsEmptyString()
     {
-        string result = _renderer.Render("   ");
+        string result = _renderer.RenderAscii("   ");
 
         Assert.Equal("", result);
     }
@@ -39,7 +39,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_SimpleWord_ReturnsSameWord()
     {
-        string result = _renderer.Render("Hello");
+        string result = _renderer.RenderAscii("Hello");
 
         Assert.Equal("Hello", result);
     }
@@ -47,7 +47,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputHasLeadingAndTrailingSpaces_TrimsInput()
     {
-        string result = _renderer.Render("   Hello   ");
+        string result = _renderer.RenderAscii("   Hello   ");
 
         Assert.Equal("Hello", result);
     }
@@ -55,7 +55,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_InputHasMixedCase_PreservesCase()
     {
-        string result = _renderer.Render("HeLLo");
+        string result = _renderer.RenderAscii("HeLLo");
 
         Assert.Equal("HeLLo", result);
     }
@@ -63,7 +63,7 @@ public class AsciiRendererTests
     [Fact]
     public void Render_SingleCharacter_ReturnsSameCharacter()
     {
-        string result = _renderer.Render("A");
+        string result = _renderer.RenderAscii("A");
 
         Assert.Equal("A", result);
     }
@@ -79,7 +79,7 @@ public class AsciiRendererTests
         string expectedOutput = "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n";
 
         // Act
-        string actualOutput = renderer.Render(input);
+        string actualOutput = renderer.RenderAscii(input);
 
         // Assert
         Assert.Equal(expectedOutput, actualOutput);
