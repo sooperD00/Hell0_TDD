@@ -67,4 +67,21 @@ public class AsciiRendererTests
 
         Assert.Equal("A", result);
     }
+
+    [Fact]
+    public void Render_Hi_ReturnsExpectedFiggleOutput()
+    {
+        // Arrange
+        var renderer = new AsciiRenderer();
+        string input = "Hi";
+
+        // This is the expected multi-line Figgle ASCII output for "Hi"
+        string expectedOutput = "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n";
+
+        // Act
+        string actualOutput = renderer.Render(input);
+
+        // Assert
+        Assert.Equal(expectedOutput, actualOutput);
+    }
 }
