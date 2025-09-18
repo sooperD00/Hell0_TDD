@@ -12,59 +12,28 @@ public class AsciiRendererTests
         _renderer = new AsciiRenderer();
     }
 
-    [Fact]
-    public void Render_InputIsNull_ReturnsEmptyString()
+    // Parameterized tests for various Figgle inputs
+    [Theory]
+    [InlineData("Hi", "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n")]
+    [InlineData("   Hi   ", "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n")]
+    [InlineData("Hello", "  _   _      _ _       \r\n | | | | ___| | | ___  \r\n | |_| |/ _ \\ | |/ _ \\ \r\n |  _  |  __/ | | (_) |\r\n |_| |_|\\___|_|_|\\___/ \r\n                       \r\n")]
+    public void RenderAscii_ReturnsExpectedFiggleOutput(string input, string expectedOutput)
     {
-        string result = _renderer.RenderAscii(null);
-
-        Assert.Equal("", result);
-    }
-
-    [Fact]
-    public void Render_InputIsEmpty_ReturnsEmptyString()
-    {
-        string result = _renderer.RenderAscii("");
-
-        Assert.Equal("", result);
-    }
-
-    [Fact]
-    public void Render_InputIsWhitespace_ReturnsEmptyString()
-    {
-        string result = _renderer.RenderAscii("   ");
-
-        Assert.Equal("", result);
-    }
-
-    [Fact]
-    public void Render_InputHasLeadingAndTrailingSpaces_TrimsInput()
-    {
-        // Arrange
-        string input = "  Hi  ";
-
-        // This is the expected multi-line Figgle ASCII output for "Hi"
-        string expectedOutput = "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n";
-
         // Act
-        string actualOutput = _renderer.RenderAscii(input);
+        string actual = _renderer.RenderAscii(input);
 
         // Assert
-        Assert.Equal(expectedOutput, actualOutput);
+        Assert.Equal(expectedOutput, actual);
     }
 
-    [Fact]
-    public void Render_Hi_ReturnsExpectedFiggleOutput()
+    // Keep simple edge-case tests separate
+    [Theory]
+    [InlineData(null)]
+    [InlineData("")]
+    [InlineData("   ")]
+    public void RenderAscii_NullOrWhitespaceInput_ReturnsEmptyString(string input)
     {
-        // Arrange
-        string input = "Hi";
-
-        // This is the expected multi-line Figgle ASCII output for "Hi"
-        string expectedOutput = "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n";
-
-        // Act
-        string actualOutput = _renderer.RenderAscii(input);
-
-        // Assert
-        Assert.Equal(expectedOutput, actualOutput);
+        string result = _renderer.RenderAscii(input);
+        Assert.Equal(string.Empty, result);
     }
 }
