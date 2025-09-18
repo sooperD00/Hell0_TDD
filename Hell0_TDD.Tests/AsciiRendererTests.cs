@@ -12,28 +12,56 @@ public class AsciiRendererTests
         _renderer = new AsciiRenderer();
     }
 
-    // Parameterized tests for various Figgle inputs
-    [Theory]
-    [InlineData("Hi", "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n")]
-    [InlineData("   Hi   ", "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n")]
-    [InlineData("Hello", "  _   _      _ _       \r\n | | | | ___| | | ___  \r\n | |_| |/ _ \\ | |/ _ \\ \r\n |  _  |  __/ | | (_) |\r\n |_| |_|\\___|_|_|\\___/ \r\n                       \r\n")]
-    public void RenderAscii_ReturnsExpectedFiggleOutput(string input, string expectedOutput)
-    {
-        // Act
-        string actual = _renderer.RenderAscii(input);
-
-        // Assert
-        Assert.Equal(expectedOutput, actual);
-    }
-
-    // Keep simple edge-case tests separate
+    // Null, empty, or whitespace input
     [Theory]
     [InlineData(null)]
     [InlineData("")]
     [InlineData("   ")]
+    [InlineData("\t")]
+    [InlineData("\n")]
     public void RenderAscii_NullOrWhitespaceInput_ReturnsEmptyString(string input)
     {
         string result = _renderer.RenderAscii(input);
         Assert.Equal(string.Empty, result);
+    }
+
+    // Leading/trailing whitespace is trimmed
+    [Theory]
+    [InlineData("   Hi   ", "  _   _ _ \r\n | | | (_)\r\n | |_| | |\r\n |  _  | |\r\n |_| |_|_|\r\n          \r\n")]
+    [InlineData("\tHello\t", "  _   _      _ _       \r\n | | | | ___| | | ___  \r\n | |_| |/ _ \\ | |/ _ \\ \r\n |  _  |  __/ | | (_) |\r\n |_| |_|\\___|_|_|\\___/ \r\n                       \r\n")]
+    public void RenderAscii_TrimmedInput_ReturnsExpectedOutput(string input, string expectedOutput)
+    {
+        string actual = _renderer.RenderAscii(input);
+        Assert.Equal(expectedOutput, actual);
+    }
+
+    // Special characters and numbers
+    [Theory]
+    [InlineData("!@#", "  _   ____    _  _   \r\n | | / __ \\ _| || |_ \r\n | |/ / _` |_  ..  _|\r\n |_| | (_| |_      _|\r\n (_)\\ \\__,_| |_||_|  \r\n     \\____/          \r\n")]
+    [InlineData("123", "  _ ____  _____ \r\n / |___ \\|___ / \r\n | | __) | |_ \\ \r\n | |/ __/ ___) |\r\n |_|_____|____/ \r\n                \r\n")]
+    public void RenderAscii_SpecialCharactersAndNumbers_ReturnsExpectedOutput(string input, string expectedOutput)
+    {
+        string actual = _renderer.RenderAscii(input);
+        Assert.Equal(expectedOutput, actual);
+    }
+
+    // Consistency: same input returns identical output
+    [Fact]
+    public void RenderAscii_SameInputMultipleTimes_ReturnsSameOutput()
+    {
+        string input = "Hi";
+        string first = _renderer.RenderAscii(input);
+        string second = _renderer.RenderAscii(input);
+
+        Assert.Equal(first, second);
+    }
+
+    // Very long input (does not throw)
+    [Fact]
+    public void RenderAscii_VeryLongInput_DoesNotThrow()
+    {
+        string longInput = new string('A', 1000);
+        var exception = Record.Exception(() => _renderer.RenderAscii(longInput));
+        Assert.Null(exception);
     }
 }
