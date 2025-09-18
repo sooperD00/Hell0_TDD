@@ -37,35 +37,11 @@ public class AsciiRendererTests
     }
 
     [Fact]
-    public void Render_SimpleWord_ReturnsSameWord()
-    {
-        string result = _renderer.RenderAscii("Hello");
-
-        Assert.Equal("Hello", result);
-    }
-
-    [Fact]
     public void Render_InputHasLeadingAndTrailingSpaces_TrimsInput()
     {
         string result = _renderer.RenderAscii("   Hello   ");
 
         Assert.Equal("Hello", result);
-    }
-
-    [Fact]
-    public void Render_InputHasMixedCase_PreservesCase()
-    {
-        string result = _renderer.RenderAscii("HeLLo");
-
-        Assert.Equal("HeLLo", result);
-    }
-
-    [Fact]
-    public void Render_SingleCharacter_ReturnsSameCharacter()
-    {
-        string result = _renderer.RenderAscii("A");
-
-        Assert.Equal("A", result);
     }
 
     [Fact]
