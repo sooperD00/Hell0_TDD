@@ -54,7 +54,7 @@ public class AsciiRendererTests
     [Fact]
     public void RenderAscii_VeryLongInput_DoesNotThrow()
     {
-        string longInput = new string('A', 1000);
+        string longInput = new('A', 1000);
         var exception = Record.Exception(() => AsciiRenderer.RenderAscii(longInput));
         Assert.Null(exception);
     }
