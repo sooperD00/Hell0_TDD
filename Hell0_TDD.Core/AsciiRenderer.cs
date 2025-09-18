@@ -5,6 +5,9 @@ namespace Hell0_TDD.Core;
 
 public class AsciiRenderer
 {
+    // Maximum input length allowed by this application (Figgle can handle more, but we limit for performance/design)
+    private const int MaxInputLength = 1000;
+
     // Cache the standard font once since it never changes
     private static readonly FiggleFont StandardFont = FiggleFonts.Standard;
 
@@ -15,8 +18,8 @@ public class AsciiRenderer
             return string.Empty;
 
         // Enforce a maximum input length to prevent excessive processing
-        if (input.Length > 1000)
-            throw new ArgumentException("Input exceeds maximum allowed length of 1000 characters.", nameof(input));
+        if (input.Length > MaxInputLength)
+            throw new ArgumentException($"Input exceeds maximum allowed length of {MaxInputLength} characters.", nameof(input));
 
         // Trim input but preserve case (ASCII art is case-sensitive)
         string cleanInput = input.Trim();
