@@ -39,16 +39,26 @@ This repo showcases a clean commit history that highlights TDD best practices.
 2. Open the solution `Hell0_TDD.sln` in Visual Studio.
 3. Build the solution and run tests via **Test Explorer**.
 
-## Learning Objectives
+## NuGet Package
+Hell0_TDD.Core is available on [NuGet](https://www.nuget.org/packages/Hell0_TDD.Core/).
+To install via the .NET CLI:
+```bash
+dotnet add package Hell0_TDD.Core
+```
+Or via the Package Manager Console in Visual Studio:
+```powershell
+Install-Package Hell0_TDD.Core
+```
 
+## Learning Objectives
 - [x] Demonstrate **TDD workflow**: write failing test → implement → pass → refactor.
 - [x] Practice **unit testing** with xUnit.
 - [x] Work with a **class library project** in C#.
 - [x] Maintain a clear, professional **commit history** showcasing TDD.
 - [x] Integrate external libraries (**Figgle**) for ASCII rendering.
+- [x] Release as a NuGet package for use in future web project.
 
 ## Next Steps
-- [ ] Release as a NuGet package for use in future web project.
 - [ ] Create a minimal web front-end (ASP.NET Core or Blazor) that consumes `Hell0_TDD.Core` from NuGet.
 - [ ] Set up CI/CD using GitHub Actions to automatically build and test the library.
 

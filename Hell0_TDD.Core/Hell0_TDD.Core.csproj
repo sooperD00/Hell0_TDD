@@ -4,7 +4,31 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Description>A lightweight C# class library built with Test-Driven Development (TDD). Provides an ASCII text renderer using Figgle fonts. Designed as a portfolio project to demonstrate clean commit history, unit testing with xUnit, and the Red → Green → Refactor workflow.</Description>
+    <Title>Hell0_TDD.Core – ASCII Renderer with TDD</Title>
+	<Version>1.0.1</Version>
+    <PackageIcon>Hello_W0rld_icon.png</PackageIcon>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/sooperD00/Hell0_TDD</PackageProjectUrl>
+	<RepositoryUrl>https://github.com/sooperD00/Hell0_TDD</RepositoryUrl>
+	<RepositoryType>git</RepositoryType>
+	<Authors>sooperD00</Authors>
+    <PackageTags>ascii art renderer figgle tdd xunit testing csharp dotnet class-library</PackageTags>
+    <PackageReleaseNotes>initial release</PackageReleaseNotes>
+	<PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\Icons\Hello_W0rld_icon.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Figgle" Version="0.6.5" />
