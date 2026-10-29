@@ -26,7 +26,8 @@ public class AsciiRendererTests
     public void RenderAscii_TrimmedInput_ReturnsExpectedOutput(string input, string expectedOutput)
     {
         string actual = AsciiRenderer.RenderAscii(input);
-        Assert.Equal(expectedOutput, actual);
+        // Expected strings were captured on Windows; Figgle ends lines with the OS newline
+        Assert.Equal(expectedOutput.ReplaceLineEndings(), actual);
     }
 
     // Special characters and numbers
@@ -36,7 +37,8 @@ public class AsciiRendererTests
     public void RenderAscii_SpecialCharactersAndNumbers_ReturnsExpectedOutput(string input, string expectedOutput)
     {
         string actual = AsciiRenderer.RenderAscii(input);
-        Assert.Equal(expectedOutput, actual);
+        // Expected strings were captured on Windows; Figgle ends lines with the OS newline
+        Assert.Equal(expectedOutput.ReplaceLineEndings(), actual);
     }
 
     // Consistency: same input returns identical output
