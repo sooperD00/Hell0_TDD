@@ -3,10 +3,12 @@
 **Project:** Hell0_TDD  
 **Purpose:** Demonstrate Test-Driven Development (TDD) in C#  
 
+**The Hell0 series:** [Hello_W0rld](https://github.com/sooperD00/Hello_W0rld) (console app) → **Hell0_TDD** (tested library on NuGet) → [Hell0_Web](https://github.com/sooperD00/Hell0_Web) (web app + CI/CD) → [Hello_Eliza](https://github.com/sooperD00/Hello_Eliza) (what it grew into)
+
 ## Overview
 Hell0_TDD is a learning project to demonstrate **Test-Driven Development (TDD)** in C# using xUnit and a class library.  
 The project implements a simple ASCII renderer (`AsciiRenderer`) and evolves incrementally using the **Red → Green → Refactor** cycle.  
-Future work will integrate **Figgle** to render text in standard ASCII fonts.
+It renders text in **Figgle**'s standard ASCII font.
 
 This repo showcases a clean commit history that highlights TDD best practices.
 
@@ -59,8 +61,8 @@ Install-Package Hell0_TDD.Core
 - [x] Release as a NuGet package for use in future web project.
 
 ## Next Steps
-- [ ] Create a minimal web front-end (ASP.NET Core or Blazor) that consumes `Hell0_TDD.Core` from NuGet.
-- [ ] Set up CI/CD using GitHub Actions to automatically build and test the library.
+- [x] Create a minimal web front-end that consumes `Hell0_TDD.Core` from NuGet: [Hell0_Web](https://github.com/sooperD00/Hell0_Web) (ASP.NET Core MVC, deployed to Azure).
+- [x] Set up CI using GitHub Actions to automatically build and test the library on Windows and Linux. (Publishing to NuGet is still manual.)
 
 ## License 
 MIT License
